@@ -15,6 +15,6 @@ namespace BankingAPI.Data
     }
 
     public DbSet<Account> Accounts { get; set; }
-
+    public DbSet<Owner> Owners { get; set; }
   }
 }

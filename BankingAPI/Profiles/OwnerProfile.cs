@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace BankingAPI.Profiles
 {
-  public class AccountProfiler : Profile
+  public class OwnerProfile : Profile
   {
-    public AccountProfiler()
+    public OwnerProfile()
     {
-      CreateMap<CreateAccountDTO, Account>();
-      CreateMap<Account, ReadAccountDTO>();
-      CreateMap<UpdateAccountDTO, Account>();
+      CreateMap<CreateOwnerDTO, Owner>();
+      CreateMap<Owner, ReadOwnerDTO>();
+      CreateMap<UpdateOwnerDTO, Owner>();
     }
-
-    
   }
 }
