@@ -28,7 +28,9 @@ namespace BankingAPI.Controllers
     {
       Account account = _mapper.Map<Account>(accountDTO);
       _context.Accounts.Add(account);
+      
       _context.SaveChanges();
+      _context.Entry(account).Reference(a => a.Owner).Load();
       return CreatedAtAction(nameof(GetAccount), new { Id = account.Id }, account); // returns the status and where this resource was created
       // 201 (created)
     }

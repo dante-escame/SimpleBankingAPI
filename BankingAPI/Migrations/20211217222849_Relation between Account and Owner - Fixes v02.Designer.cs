@@ -3,14 +3,16 @@ using System;
 using BankingAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BankingAPI.Migrations
 {
     [DbContext(typeof(BankingContext))]
-    partial class BankingContextModelSnapshot : ModelSnapshot
+    [Migration("20211217222849_Relation between Account and Owner - Fixes v02")]
+    partial class RelationbetweenAccountandOwnerFixesv02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,12 +26,13 @@ namespace BankingAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("Amount")
+                        .HasMaxLength(120)
                         .HasColumnType("double");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<int>("OwnerId")
+                    b.Property<int?>("OwnerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -72,9 +75,7 @@ namespace BankingAPI.Migrations
                 {
                     b.HasOne("BankingAPI.Models.Owner", "Owner")
                         .WithMany("Accounts")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OwnerId");
 
                     b.Navigation("Owner");
                 });

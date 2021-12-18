@@ -14,6 +14,14 @@ namespace BankingAPI.Data
 
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<Account>()
+        .HasOne(a => a.Owner)
+        .WithMany(o => o.Accounts)
+        .HasForeignKey(a => a.OwnerId);
+    }
+
     public DbSet<Account> Accounts { get; set; }
     public DbSet<Owner> Owners { get; set; }
   }

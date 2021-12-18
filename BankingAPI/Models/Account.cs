@@ -11,11 +11,10 @@ namespace BankingAPI.Models
     [Key]
     [Required]
     public int Id { get; set; }
-    [Required(ErrorMessage = "'Account' field is required.")]
+    [Required]
     public int Number { get; set; }
-    [Required(ErrorMessage = "'Owner' field is required.")]
-    [StringLength(120, ErrorMessage = "The maximum char length for 'Owner' is 120.")]
-    public string Owner { get; set; }
     public double Amount { get; set; }
+    public virtual Owner Owner { get; set; }
+    public int OwnerId { get; set; }
   }
 }
